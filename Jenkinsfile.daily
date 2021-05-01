@@ -111,7 +111,7 @@ pipeline {
         // }
          stage('publish coverage'){
             steps {
-                publishCoverage adapters: [jacocoAdapter('integration-tests/jacoco/jacoco.xml')]
+                publishCoverage adapters: [[$class: 'jacoco', path:'integration-tests/jacoco/jacoco.xml']]
             }
          }
 
