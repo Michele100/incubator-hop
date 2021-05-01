@@ -109,11 +109,15 @@ pipeline {
         //         }
         //     }
         // }
+         stage('publish coverage'){
+            steps {
+                publishCoverage adapters: [jacocoAdapter('integration-tests/jacoco/jacoco.xml')]
+            }
+         }
 
     }
     post {
         always {
-            publishCoverage adapters: [[$class: 'JacocoReportAdapter', path:'integration-tests/jacoco/jacoco.xml']]
             cleanWs()
             emailext(
                 subject: '${DEFAULT_SUBJECT}',
